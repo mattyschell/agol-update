@@ -1,5 +1,3 @@
--- from building_readonly
-
 -- do not  include
 -- name
 -- geom_source
@@ -10,33 +8,43 @@
 -- alteration_year
 -- se_anno_cad_data
 -- sde_state_id
-
-create or replace force view building_pub (
-    objectid 
-   ,bin
-   ,base_bbl
-   ,construction_year
-   ,last_status_type
-   ,doitt_id
-   ,height_roof
-   ,feature_code
-   ,status
-   ,ground_elevation
-   ,created_date
-   ,last_edited_date
-   ,mappluto_bbl
-   ,shape
+--
+-- AGOL currently publishes
+-- Name
+-- geom_source
+create or replace force view building_historic_pub (
+     objectid
+    ,bin
+    ,base_bbl
+    ,height_roof
+    ,last_status_type
+    ,doitt_id
+    ,construction_year
+    ,demolition_year
+    ,created_date
+    ,last_edited_date
+    ,addressable
+    ,ground_elevation
+    ,status
+    ,feature_code
+    ,mappluto_bbl
 )
 as 
 select
-    objectid
-   ,bin
-   ,base_bbl
-   ,construction_year
-   ,last_status_type
-   ,doitt_id
-   ,height_roof
-   ,case feature_code 
+     objectid
+    ,bin
+    ,base_bbl
+    ,height_roof
+    ,last_status_type
+    ,doitt_id
+    ,construction_year
+    ,demolition_year
+    ,created_date
+    ,last_edited_date
+    ,addressable
+    ,ground_elevation
+    ,status
+    ,case feature_code 
         when 2100 
             then 'Building'
         when 5100
@@ -59,14 +67,9 @@ select
             then 'Temporary Structure'
         when 1006
             then 'Cantilevered Building'        
-    end feature_code 
-   ,status
-   ,ground_elevation
-   ,created_date
-   ,last_edited_date
-   ,mappluto_bbl
-   ,shape
+     end feature_code 
+    ,mappluto_bbl
 from  
-    bldg.building_evw;
+    bldg.building_historic_evw;
 --grant select on building_historic_evw to "BLDG_READONLY" with grant option;
-grant select on building_pub to "PUBLIC";
+grant select on building_historic_pub to "PUBLIC";
