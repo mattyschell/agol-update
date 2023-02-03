@@ -20,6 +20,7 @@ create or replace force view building_pub (
    ,doitt_id
    ,height_roof
    ,feature_code
+   ,feature_value
    ,status
    ,ground_elevation
    ,created_date
@@ -36,6 +37,7 @@ select
    ,last_status_type
    ,doitt_id
    ,height_roof
+   ,feature_code
    ,case feature_code 
         when 2100 
             then 'Building'
@@ -59,7 +61,7 @@ select
             then 'Temporary Structure'
         when 1006
             then 'Cantilevered Building'        
-    end feature_code 
+    end feature_value 
    ,status
    ,ground_elevation
    ,created_date

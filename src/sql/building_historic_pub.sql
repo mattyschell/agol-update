@@ -27,7 +27,9 @@ create or replace force view building_historic_pub (
     ,ground_elevation
     ,status
     ,feature_code
+    ,feature_value
     ,mappluto_bbl
+    ,shape
 )
 as 
 select
@@ -44,6 +46,7 @@ select
     ,addressable
     ,ground_elevation
     ,status
+    ,feature_code
     ,case feature_code 
         when 2100 
             then 'Building'
@@ -67,8 +70,9 @@ select
             then 'Temporary Structure'
         when 1006
             then 'Cantilevered Building'        
-     end feature_code 
+     end feature_value 
     ,mappluto_bbl
+    ,shape
 from  
     bldg.building_historic_evw;
 --grant select on building_historic_evw to "BLDG_READONLY" with grant option;

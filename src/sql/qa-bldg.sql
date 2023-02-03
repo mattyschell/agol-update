@@ -3,8 +3,8 @@ select
         when kount > 0
             then 'OK'
         else
-              'FAIL: check building_historic_pub for errors'
-    end as qacheck
+              'FAIL: check building_pub for errors'
+    end as qa_building_pub
     from
 (select count(*) as kount from building_pub) a;
 select 
@@ -13,6 +13,6 @@ select
             then 'OK'
         else
               'FAIL: check building_historic_pub for errors'
-    end as qacheck
+    end as qa_building_historic_pub
     from
 (select count(*) as kount from building_historic_pub) a;

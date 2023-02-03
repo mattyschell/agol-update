@@ -27,6 +27,7 @@ create or replace force view commonplace_pub (
     ,sosindicator
     ,placeid
     ,facility_domains
+    ,facility_value
     ,bin
     ,boroughcode
     ,sourceid
@@ -35,6 +36,7 @@ create or replace force view commonplace_pub (
     ,modified_by
     ,modified_date
     ,facility_type
+    ,facility_type_value
     ,source
     ,b7sc
     ,primaryaddresspointid
@@ -50,6 +52,7 @@ select
     ,a.saftype
     ,a.sosindicator
     ,a.placeid
+    ,a.facility_domains
     ,case facility_domains
         when '1' then
             Decode(facility_type,  1, 'Gated Development'
@@ -173,7 +176,7 @@ select
             Decode(facility_type, 2, 'Private/Parochial K-12 all grades') 
         when '18' then
             Decode(facility_type, 2, 'Private/Parochial Secondary School') 
-      end facility_domains    
+      end facility_value    
     ,a.bin
     ,a.boroughcode
     ,a.sourceid
@@ -181,6 +184,7 @@ select
     ,a.created_date
     ,a.modified_by
     ,a.modified_date
+    ,a.facility_type
     ,case facility_type
         when 1 then
             'Residential'
@@ -208,7 +212,7 @@ select
             'Water'
         when 13 then
             'Miscellaneous'
-      end facility_type
+      end facility_type_value
     ,a.source
     ,a.b7sc
     ,a.primaryaddresspointid
