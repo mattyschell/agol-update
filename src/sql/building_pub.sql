@@ -11,7 +11,7 @@
 -- se_anno_cad_data
 -- sde_state_id
 
-create or replace force view building_pub (
+create or replace force view building_resolved (
     objectid 
    ,bin
    ,base_bbl
@@ -20,7 +20,7 @@ create or replace force view building_pub (
    ,doitt_id
    ,height_roof
    ,feature_code
-   ,feature_value
+   ,feature_code_resolved
    ,status
    ,ground_elevation
    ,created_date
@@ -61,7 +61,7 @@ select
             then 'Temporary Structure'
         when 1006
             then 'Cantilevered Building'        
-    end feature_value 
+    end feature_code_resolved 
    ,status
    ,ground_elevation
    ,created_date
@@ -71,4 +71,4 @@ select
 from  
     bldg.building_evw;
 --grant select on building_historic_evw to "BLDG_READONLY" with grant option;
-grant select on building_pub to "PUBLIC";
+grant select on building_resolved to "PUBLIC";
