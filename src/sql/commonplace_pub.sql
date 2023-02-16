@@ -24,12 +24,15 @@ create or replace force view commonplace_pub (
     ,segmentid
     ,complexid
     ,saftype
+    ,saftype_value --
     ,sosindicator
+    ,sosindicator_value --
     ,placeid
     ,facility_domains
-    ,facility_value
-    ,bin
+    ,facility_domains_value
+    ,bin -- diff order now?
     ,boroughcode
+    ,boroughcode_value --
     ,sourceid
     ,created_by
     ,created_date
@@ -38,10 +41,12 @@ create or replace force view commonplace_pub (
     ,facility_type
     ,facility_type_value
     ,source
+    ,source_value --
     ,b7sc
     ,primaryaddresspointid
-    ,feature_name
+    ,feature_name -- diff order
     ,security_level
+    ,security_level_resolved
     ,shape
 )
 as 
@@ -50,7 +55,9 @@ select
     ,a.segmentid
     ,a.complexid
     ,a.saftype
+    ,a.saftype_value
     ,a.sosindicator
+    ,a.sosindicator_value
     ,a.placeid
     ,a.facility_domains
     ,case facility_domains
@@ -179,6 +186,7 @@ select
       end facility_value    
     ,a.bin
     ,a.boroughcode
+    ,a.boroughcode_value
     ,a.sourceid
     ,a.created_by
     ,a.created_date
@@ -214,6 +222,7 @@ select
             'Miscellaneous'
       end facility_type_value
     ,a.source
+    ,a.source_value
     ,a.b7sc
     ,a.primaryaddresspointid
     ,a.feature_name

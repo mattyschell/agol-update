@@ -1,4 +1,4 @@
-@src\sql\building_pub.sql
-@src\sql\building_historic_pub.sql
+@src\sql\building.sql
+@src\sql\building_historic.sql
 @src\sql\qa-bldg.sql
 EXIT
